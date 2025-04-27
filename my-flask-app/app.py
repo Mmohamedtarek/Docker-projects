@@ -4,7 +4,7 @@ import redis
 
 app = Flask(__name__)
 
-# إعداد الاتصال بـ MySQL
+# Setting up MySQL Connection
 def get_mysql_connection():
     return mysql.connector.connect(
         host="mysql",
@@ -13,7 +13,7 @@ def get_mysql_connection():
         database="flask_db"
     )
 
-# إعداد الاتصال بـ Redis
+# Setting up Redis Connection
 def get_redis_connection():
     return redis.StrictRedis(host='redis', port=6379, db=0)
 
