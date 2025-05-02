@@ -39,29 +39,22 @@ docker compose up
 
 ## After startup, the app will be available at:
 
-http://localhost:8000
+http://localhost:8080
 
-you should to see : (Hello from FastAPI!)
 
 ## Security Scanning
 
 Using Trivy:
 
 $sudo trivy image fastapi-app-app
-2025-05-02T17:59:11+03:00	INFO	[vulndb] Need to update DB
-2025-05-02T17:59:11+03:00	INFO	[vulndb] Downloading vulnerability DB...
-2025-05-02T17:59:11+03:00	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
-62.89 MiB / 62.89 MiB [---------------------------------------------------------] 100.00% 510.63 KiB p/s 2m6s
-2025-05-02T18:01:19+03:00	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
-2025-05-02T18:01:19+03:00	INFO	[vuln] Vulnerability scanning is enabled
-2025-05-02T18:01:19+03:00	INFO	[secret] Secret scanning is enabled
-2025-05-02T18:01:19+03:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
-2025-05-02T18:01:19+03:00	INFO	[secret] Please see also https://trivy.dev/v0.62/docs/scanner/secret#recommendation for faster secret detection
-2025-05-02T18:02:04+03:00	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
-2025-05-02T18:02:05+03:00	INFO	Detected OS	family="alpine" version="3.21.3"
-2025-05-02T18:02:05+03:00	INFO	[alpine] Detecting vulnerabilities...	os_version="3.21" repository="3.21" pkg_num=37
-2025-05-02T18:02:05+03:00	INFO	Number of language-specific files	num=1
-2025-05-02T18:02:05+03:00	INFO	[python-pkg] Detecting vulnerabilities...
+2025-05-02T19:49:37+03:00	INFO	[vuln] Vulnerability scanning is enabled
+2025-05-02T19:49:37+03:00	INFO	[secret] Secret scanning is enabled
+2025-05-02T19:49:37+03:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-05-02T19:49:37+03:00	INFO	[secret] Please see also https://trivy.dev/v0.62/docs/scanner/secret#recommendation for faster secret detection
+2025-05-02T19:49:37+03:00	INFO	Detected OS	family="alpine" version="3.21.3"
+2025-05-02T19:49:37+03:00	INFO	[alpine] Detecting vulnerabilities...	os_version="3.21" repository="3.21" pkg_num=37
+2025-05-02T19:49:37+03:00	INFO	Number of language-specific files	num=1
+2025-05-02T19:49:37+03:00	INFO	[python-pkg] Detecting vulnerabilities...
 
 Report Summary
 
@@ -130,8 +123,53 @@ Total: 1 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 1, CRITICAL: 0)
 ├─────────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼───────────────────────────────────────────────────────┤
 │ sqlite-libs │ CVE-2025-29087 │ HIGH     │ fixed  │ 3.48.0-r0         │ 3.48.0-r1     │ sqlite: Integer Overflow in SQLite concat_ws Function │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2025-29087            │
-└─────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴───────────────────────────────────────────────────────
+└─────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴───────────────────────────────────────────────────────┘
 
+
+$sudo trivy image redis:8.0-rc1-alpine3.21
+
+2025-05-02T19:45:42+03:00	INFO	[vuln] Vulnerability scanning is enabled
+2025-05-02T19:45:42+03:00	INFO	[secret] Secret scanning is enabled
+2025-05-02T19:45:42+03:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-05-02T19:45:42+03:00	INFO	[secret] Please see also https://trivy.dev/v0.62/docs/scanner/secret#recommendation for faster secret detection
+2025-05-02T19:45:42+03:00	WARN	No OS package is detected. Make sure you haven't deleted any files that contain information about the installed packages.
+2025-05-02T19:45:42+03:00	WARN	e.g. files under "/lib/apk/db/", "/var/lib/dpkg/" and "/var/lib/rpm"
+2025-05-02T19:45:42+03:00	INFO	Detected OS	family="alpine" version="3.21.3"
+2025-05-02T19:45:42+03:00	INFO	[alpine] Detecting vulnerabilities...	os_version="3.21" repository="3.21" pkg_num=0
+2025-05-02T19:45:42+03:00	INFO	Number of language-specific files	num=0
+
+Report Summary
+
+┌──────────────────────────────────────────┬────────┬─────────────────┬─────────┐
+│                  Target                  │  Type  │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+│ redis:8.0-rc1-alpine3.21 (alpine 3.21.3) │ alpine │        0        │    -    │
+└──────────────────────────────────────────┴────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+$sudo trivy image nginx:stable-alpine-perl
+
+2025-05-02T19:45:09+03:00	INFO	[vuln] Vulnerability scanning is enabled
+2025-05-02T19:45:09+03:00	INFO	[secret] Secret scanning is enabled
+2025-05-02T19:45:09+03:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-05-02T19:45:09+03:00	INFO	[secret] Please see also https://trivy.dev/v0.62/docs/scanner/secret#recommendation for faster secret detection
+2025-05-02T19:45:10+03:00	INFO	Detected OS	family="alpine" version="3.21.3"
+2025-05-02T19:45:10+03:00	INFO	[alpine] Detecting vulnerabilities...	os_version="3.21" repository="3.21" pkg_num=70
+2025-05-02T19:45:10+03:00	INFO	Number of language-specific files	num=0
+
+Report Summary
+
+┌──────────────────────────────────────────┬────────┬─────────────────┬─────────┐
+│                  Target                  │  Type  │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+│ nginx:stable-alpine-perl (alpine 3.21.3) │ alpine │        0        │    -    │
+└──────────────────────────────────────────┴────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected) 
 
 ## Project Structure
 
