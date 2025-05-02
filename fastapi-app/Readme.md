@@ -18,14 +18,14 @@ This project is a **production-ready containerized Python web application** buil
 
 ## Architecture
 
-+-------------+ +------------------+ +---------------+
-| Client +-------> | NGINX +-------> | FastAPI App |
-+-------------+ +------------------+ +-------+-------+
-| |
-+------+ +---+------+
-| Redis | | Postgres|
-+-------+ +----------+
-
+```
++-------------+         +------------------+         +---------------+
+|   Client    +-------> |     NGINX        +-------> |  FastAPI App  |
++-------------+         +------------------+         +-------+-------+
+                                                       |       |
+                                                +------+   +---+------+
+                                                | Redis |   | Postgres|
+                                                +-------+   +----------+
 
 ---
 
@@ -41,6 +41,7 @@ docker compose up
 
 http://localhost:8000
 
+you should to see : (Hello from FastAPI!)
 
 ## Security Scanning
 
