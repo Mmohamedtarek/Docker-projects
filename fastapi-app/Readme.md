@@ -173,14 +173,20 @@ Legend:
 
 ## Project Structure
 
-.
+
+fastapi-app/
 ├── app/
-│   ├── Dockerfile
 │   ├── main.py
+│   ├── models.py
+│   ├── database.py
+│   ├── schemas.py
+│   ├── dockerfile
 │   └── requirements.txt
+│
 ├── nginx/
 │   ├── default.conf
 │   └── nginx.conf
+│
 ├── docker-compose.yml
 └── README.md
 
